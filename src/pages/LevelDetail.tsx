@@ -124,13 +124,19 @@ const LevelDetail = () => {
               </p>
             </div>
 
-            <div className="relative overflow-hidden rounded-lg aspect-video mb-8 animate-scale-in">
+            <button 
+              onClick={() => openFullscreen(level.image)}
+              className="relative overflow-hidden rounded-lg aspect-video mb-8 animate-scale-in group cursor-pointer w-full"
+            >
               <img 
                 src={level.image} 
                 alt={level.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-            </div>
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                <Icon name="Maximize2" size={32} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            </button>
 
             <div className="grid grid-cols-3 gap-4 mb-16">
               {galleryImages.map((img, index) => (
