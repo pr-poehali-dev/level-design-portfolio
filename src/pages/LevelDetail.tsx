@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 
 const levelData = {
@@ -64,6 +65,24 @@ const levelData = {
 const LevelDetail = () => {
   const { id } = useParams();
   const level = id ? levelData[id as keyof typeof levelData] : null;
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [fullscreenImage, setFullscreenImage] = useState('');
+
+  const galleryImages = [
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23333'/%3E%3Cg transform='translate(400,225)'%3E%3Cpath d='M-50,-50 L50,-50 L50,50 L-50,50 Z M-40,-40 L-40,40 L40,40 L40,-40 Z M-30,-50 L-30,50 M30,-50 L30,50 M-50,-30 L50,-30 M-50,30 L50,30' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/g%3E%3Ctext x='400' y='240' text-anchor='middle' fill='%23999' font-family='monospace' font-size='16'%3EDEV PLACEHOLDER%3C/text%3E%3C/svg%3E",
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23333'/%3E%3Cg transform='translate(400,225)'%3E%3Cpath d='M-50,-50 L50,-50 L50,50 L-50,50 Z M-40,-40 L-40,40 L40,40 L40,-40 Z M-30,-50 L-30,50 M30,-50 L30,50 M-50,-30 L50,-30 M-50,30 L50,30' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/g%3E%3Ctext x='400' y='240' text-anchor='middle' fill='%23999' font-family='monospace' font-size='16'%3EDEV PLACEHOLDER%3C/text%3E%3C/svg%3E",
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23333'/%3E%3Cg transform='translate(400,225)'%3E%3Cpath d='M-50,-50 L50,-50 L50,50 L-50,50 Z M-40,-40 L-40,40 L40,40 L40,-40 Z M-30,-50 L-30,50 M30,-50 L30,50 M-50,-30 L50,-30 M-50,30 L50,30' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/g%3E%3Ctext x='400' y='240' text-anchor='middle' fill='%23999' font-family='monospace' font-size='16'%3EDEV PLACEHOLDER%3C/text%3E%3C/svg%3E"
+  ];
+
+  const openFullscreen = (imageSrc: string) => {
+    setFullscreenImage(imageSrc);
+    setIsFullscreen(true);
+  };
+
+  const closeFullscreen = () => {
+    setIsFullscreen(false);
+    setFullscreenImage('');
+  };
 
   if (!level) {
     return (
@@ -105,12 +124,31 @@ const LevelDetail = () => {
               </p>
             </div>
 
-            <div className="relative overflow-hidden rounded-lg aspect-video mb-16 animate-scale-in">
+            <div className="relative overflow-hidden rounded-lg aspect-video mb-8 animate-scale-in">
               <img 
                 src={level.image} 
                 alt={level.title}
                 className="w-full h-full object-cover"
               />
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 mb-16">
+              {galleryImages.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => openFullscreen(img)}
+                  className="relative overflow-hidden rounded-lg aspect-video group cursor-pointer"
+                >
+                  <img 
+                    src={img}
+                    alt={`Gallery image ${index + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                    <Icon name="Maximize2" size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </button>
+              ))}
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 mb-16">
@@ -183,6 +221,26 @@ const LevelDetail = () => {
           </div>
         </section>
       </main>
+
+      {isFullscreen && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
+          onClick={closeFullscreen}
+        >
+          <button
+            onClick={closeFullscreen}
+            className="absolute top-4 right-4 text-white hover:text-primary transition-colors"
+          >
+            <Icon name="X" size={32} />
+          </button>
+          <img 
+            src={fullscreenImage}
+            alt="Fullscreen view"
+            className="max-w-full max-h-full object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       <footer className="py-8 px-6 border-t border-border">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
