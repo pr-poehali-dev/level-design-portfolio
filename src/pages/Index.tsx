@@ -4,21 +4,21 @@ import Icon from '@/components/ui/icon';
 const levels = [
   {
     id: 1,
-    title: "Neon District",
+    title: "Lakeview Breach",
     image: "https://cdn.poehali.dev/projects/23f1cb18-8367-4f38-808a-2eaccb1d4bb1/files/ff19b749-ba80-43d1-adbf-4169cf8ef4cd.jpg",
-    category: "Sci-Fi"
+    category: ""
   },
   {
     id: 2,
-    title: "Ancient Citadel",
-    image: "https://cdn.poehali.dev/projects/23f1cb18-8367-4f38-808a-2eaccb1d4bb1/files/d6b3d1f0-b911-46f4-b0b1-7c441e0e5069.jpg",
-    category: "Fantasy"
+    title: "Level 2",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23333'/%3E%3Cg transform='translate(400,225)'%3E%3Cpath d='M-50,-50 L50,-50 L50,50 L-50,50 Z M-40,-40 L-40,40 L40,40 L40,-40 Z M-30,-50 L-30,50 M30,-50 L30,50 M-50,-30 L50,-30 M-50,30 L50,30' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/g%3E%3Ctext x='400' y='240' text-anchor='middle' fill='%23999' font-family='monospace' font-size='16'%3EDEV PLACEHOLDER%3C/text%3E%3C/svg%3E",
+    category: ""
   },
   {
     id: 3,
-    title: "Forgotten City",
-    image: "https://cdn.poehali.dev/projects/23f1cb18-8367-4f38-808a-2eaccb1d4bb1/files/ea7aa30f-567b-44a0-927e-c9ec894cba0a.jpg",
-    category: "Post-Apocalyptic"
+    title: "Level 3",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23333'/%3E%3Cg transform='translate(400,225)'%3E%3Cpath d='M-50,-50 L50,-50 L50,50 L-50,50 Z M-40,-40 L-40,40 L40,40 L40,-40 Z M-30,-50 L-30,50 M30,-50 L30,50 M-50,-30 L50,-30 M-50,30 L50,30' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/g%3E%3Ctext x='400' y='240' text-anchor='middle' fill='%23999' font-family='monospace' font-size='16'%3EDEV PLACEHOLDER%3C/text%3E%3C/svg%3E",
+    category: ""
   }
 ];
 
@@ -73,9 +73,11 @@ const Index = () => {
                 >
                   <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
                     <div className="text-center space-y-2">
-                      <p className="text-sm text-accent font-medium uppercase tracking-wider">
-                        {level.category}
-                      </p>
+                      {level.category && (
+                        <p className="text-sm text-accent font-medium uppercase tracking-wider">
+                          {level.category}
+                        </p>
+                      )}
                       <h3 className="text-4xl font-bold group-hover:text-primary transition-colors">
                         {level.title}
                       </h3>
