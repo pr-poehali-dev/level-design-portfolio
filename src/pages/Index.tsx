@@ -5,7 +5,7 @@ const levels = [
   {
     id: 1,
     title: "Lakeview Breach",
-    image: "https://cdn.poehali.dev/projects/23f1cb18-8367-4f38-808a-2eaccb1d4bb1/files/ff19b749-ba80-43d1-adbf-4169cf8ef4cd.jpg",
+    image: "https://cdn.poehali.dev/files/screenshot1.jpg",
     category: ""
   },
   {
