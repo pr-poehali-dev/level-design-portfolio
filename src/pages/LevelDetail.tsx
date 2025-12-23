@@ -3,9 +3,9 @@ import Icon from '@/components/ui/icon';
 
 const levelData = {
   "1": {
-    title: "Neon District",
-    category: "Sci-Fi",
-    image: "https://cdn.poehali.dev/projects/23f1cb18-8367-4f38-808a-2eaccb1d4bb1/files/ff19b749-ba80-43d1-adbf-4169cf8ef4cd.jpg",
+    title: "Lakeview Breach",
+    category: "",
+    image: "https://cdn.poehali.dev/files/screenshot1.jpg",
     description: "Футуристический городской уровень с неоновым освещением и индустриальной атмосферой.",
     details: [
       "Площадь уровня: 2000x2000 метров",
